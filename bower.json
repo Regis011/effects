@@ -1,0 +1,9 @@
+{
+  "name": "effects",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap-sass": "latest",
+    "fontawesome": "latest"
+  },
+  "devDependencies": {}
+}
