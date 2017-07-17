@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 Needed if using a fixed navbar
 --------------------------------------------------------------*/
-body { 
+body {
 	padding-top: 70px;
 }
 
@@ -11,4 +11,11 @@ body {
 
 article {
     color: aqua;
+}
+
+.widget {
+	&:first-child {
+		margin: 0 10px 45px 0;
+	}
+	margin: 45px 10px;
 }
