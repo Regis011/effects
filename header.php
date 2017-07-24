@@ -22,7 +22,9 @@
 				<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=19119"><span>Back to the Codrops Article</span></a></span>
 			</div>
 			<header class="header">
-				<div class="bg-img"><img src="img/7.jpg" alt="Background Image"/></div>
+				<div class="bg-img">
+					<?php the_post_thumbnail( 'full', array( 'class' => 'image_fade') ); ?>
+				</div>
 				<div class="title">
 					<nav class="codrops-demos">
 						<?php
@@ -44,21 +46,7 @@
 						?>
 					</nav>
 
-					<h1>Breathe under water till the end</h1>
+					<h1><?php the_title(); ?></h1>
 				</div>
 			</header>
 			<button class="trigger" data-info="Click to see the header effect"><span>Trigger</span></button>
-			<div class="title">
-				<nav class="codrops-demos">
-						<a class="current-demo" href="index.html">Push</a>
-						<a href="index2.html">Fade Out</a>
-						<a href="index3.html">Sliced</a>
-						<a href="index4.html">Side</a>
-						<a href="index5.html">Fixed Side</a>
-						<a href="index6.html">Grid</a>
-						<a href="index7.html">Jam 3</a>
-					</nav>
-				<h1>Breathe under water till the end</h1>
-				<p class="subline">Inspiration for Article Intro Effects</p>
-				<p>by <strong>Henry James</strong> &#8212; Posted in <strong>Inspiration</strong> on <strong>May 21, 2014</strong></p>
-			</div>
