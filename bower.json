@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "dependencies": {
     "bootstrap-sass": "latest",
-    "fontawesome": "latest"
+    "fontawesome": "latest",
+    "mcgriddle": "^0.5.0"
   },
   "devDependencies": {}
 }

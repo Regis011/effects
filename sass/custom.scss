@@ -1,13 +1,6 @@
 /*--------------------------------------------------------------
 Needed if using a fixed navbar
 --------------------------------------------------------------*/
-body {
-	padding-top: 70px;
-}
-
-.navbar {
-	@include admin-sticky-fix;
-}
 
 article {
     color: aqua;
@@ -23,4 +16,19 @@ article {
 .intro-effect-push header.header {
     left: 0;
     top: 0;
+}
+
+.col-md-12 {
+  @include container;
+}
+.col-md-8 {
+  @include columns(8);
+}
+.col-md-4{
+  @include columns(4, last);
+}
+
+footer {
+  @include container;
+  clear: both;
 }

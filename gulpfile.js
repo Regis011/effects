@@ -94,6 +94,7 @@ options.sass = {
   //imagePath: 'assets/img',
   includePaths: [
     config.bowerDir + '/bootstrap-sass/assets/stylesheets',
+    config.bowerDir + '/mcgriddle/_sass/mcgriddle',
     config.bowerDir + '/fontawesome/scss',
   ]
 };

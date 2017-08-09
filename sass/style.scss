@@ -1,62 +1,28 @@
 /*
-Theme Name: np011 Bootstrap 3
-Theme URI: https://github.com/braginteractive/np011
-Author: Brad Williams
-Author URI: http://braginteractive.com
-Description: _s + Gulp + Bower
-Version: 1.0.0
+Theme Name: Effects
+Theme URI: /
+Author: Vladimir Rancic
+Author URI: https://twitter.com/vladimirXRegis
+Description: Effects Theme inspiratons from Codrops site and post "Inspiration for Article Intro Effects" https://tympanus.net/codrops/2014/05/22/inspiration-for-article-intro-effects/
+Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: np011
-Tags:
-
+Text Domain: effects
+Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
-
-np011 is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
-
-Normalizing styles have been helped along thanks to the fine work of
-Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 */
 
-
 /*--------------------------------------------------------------
-# Bootstrap
-Customize Bootstrap: http://treyhunner.com/2015/02/creating-a-custom-bootstrap-build/
-Mixins: http://www.sitepoint.com/5-useful-sass-mixins-bootstrap/
+# MCGriddle - Grid System
 --------------------------------------------------------------*/
-@import "bootstrap/bootstrap";
+@import "mcgriddle/mcgriddle-settings";
+@import "mcgriddle/mcgriddle";
 
 /*--------------------------------------------------------------
 # Font Awesome
 --------------------------------------------------------------*/
 @import "font-awesome";
-
-/*--------------------------------------------------------------
-# Mixins
---------------------------------------------------------------*/
-@import "mixins/mixins-master";
-
-/*--------------------------------------------------------------
-# Structure
---------------------------------------------------------------*/
-@import "variables-site/variables-site";
-
-/*--------------------------------------------------------------
-# WordPress Media
---------------------------------------------------------------*/
-@import "media/media";
-
-/*--------------------------------------------------------------
-# WordPress Generated Classes
---------------------------------------------------------------*/
-@import "modules/wp-classes";
-
-/*--------------------------------------------------------------
-# Comments
---------------------------------------------------------------*/
-@import "modules/comments";
-
 
 /*--------------------------------------------------------------
 # Custom styles
