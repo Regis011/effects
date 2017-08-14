@@ -1,0 +1,9 @@
+.col-md-12 {
+  @include container;
+}
+.col-md-8 {
+  @include columns(8);
+}
+.col-md-4{
+  @include columns(4, last);
+}

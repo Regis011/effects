@@ -16,6 +16,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # MCGriddle - Grid System
 --------------------------------------------------------------*/
+
 @import "mcgriddle/mcgriddle-settings";
 @import "mcgriddle/mcgriddle";
 
@@ -23,6 +24,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 # Font Awesome
 --------------------------------------------------------------*/
 @import "font-awesome";
+
+/*--------------------------------------------------------------
+# Mixin
+--------------------------------------------------------------*/
+@import "mixin/responsive";
 
 /*--------------------------------------------------------------
 # Custom styles

@@ -18,17 +18,6 @@ article {
     top: 0;
 }
 
-.col-md-12 {
-  @include container;
-}
-.col-md-8 {
-  @include columns(8);
-}
-.col-md-4{
-  @include columns(4, last);
-}
-
-footer {
-  @include container;
-  clear: both;
-}
+@import "layout/body";
+@import "layout/nav";
+@import "layout/footer";
