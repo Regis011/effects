@@ -31,6 +31,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 @import "mixin/responsive";
 
 /*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import "layout/layout";
+
+/*--------------------------------------------------------------
 # Custom styles
 --------------------------------------------------------------*/
 @import "custom";

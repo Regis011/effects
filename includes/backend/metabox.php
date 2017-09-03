@@ -62,3 +62,231 @@ add_action( 'save_post', 'sidebar_save' );
 /*
 	Usage: sidebar_get_meta( 'sidebar_active_sidebar' )
 */
+
+class Rational_Meta_Box {
+	private $screens = array(
+		'page',
+	);
+	private $fields = array(
+		array(
+			'id' => 'link-1',
+			'label' => 'Link 1',
+			'type' => 'text',
+		),
+		array(
+			'id' => 'link-1-url',
+			'label' => 'Link 1 url',
+			'type' => 'url',
+		),
+		array(
+			'id' => 'link-1-media',
+			'label' => 'Link 1 media',
+			'type' => 'media',
+		),
+		array(
+			'id' => 'link-2',
+			'label' => 'Link 2',
+			'type' => 'text',
+		),
+		array(
+			'id' => 'link-2-url',
+			'label' => 'Link 2 url',
+			'type' => 'url',
+		),
+		array(
+			'id' => 'link-2-media',
+			'label' => 'Link 2 media',
+			'type' => 'media',
+		),
+		array(
+			'id' => 'link-3',
+			'label' => 'Link 3',
+			'type' => 'text',
+		),
+		array(
+			'id' => 'link-3-url',
+			'label' => 'Link 3 url',
+			'type' => 'url',
+		),
+		array(
+			'id' => 'link-3-media',
+			'label' => 'Link 3 media',
+			'type' => 'media',
+		),
+		array(
+			'id' => 'link-4',
+			'label' => 'Link 4',
+			'type' => 'text',
+		),
+		array(
+			'id' => 'link-4-url',
+			'label' => 'Link 4 url',
+			'type' => 'url',
+		),
+		array(
+			'id' => 'link-4-media',
+			'label' => 'Link 4 media',
+			'type' => 'media',
+		),
+		array(
+			'id' => 'link-5',
+			'label' => 'Link 5',
+			'type' => 'text',
+		),
+		array(
+			'id' => 'link-5-url',
+			'label' => 'Link 5 url',
+			'type' => 'url',
+		),
+		array(
+			'id' => 'link-5-media',
+			'label' => 'Link 5 media',
+			'type' => 'media',
+		),
+		array(
+			'id' => 'link-6',
+			'label' => 'Link 6',
+			'type' => 'text',
+		),
+		array(
+			'id' => 'link-6-url',
+			'label' => 'Link 6 url',
+			'type' => 'url',
+		),
+		array(
+			'id' => 'link-6-media',
+			'label' => 'Link 6 media',
+			'type' => 'media',
+		),
+	);
+
+	public function __construct() {
+		if(isset($_GET['post']) || isset($_POST['post_ID']) ){
+			$post_id = (isset($_GET['post'])) ? $_GET['post'] : $_POST['post_ID'];
+			$template = get_post_meta( $post_id, '_wp_page_template', true );
+			if($template === 'template-grid.php'):
+				add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+				add_action( 'admin_footer', array( $this, 'admin_footer' ) );
+				add_action( 'save_post', array( $this, 'save_post' ) );
+			endif;
+		}
+	}
+
+	public function add_meta_boxes() {
+		foreach ( $this->screens as $screen ) {
+			add_meta_box(
+				'second-menu',
+				__( 'Second Menu', 'extra-meny' ),
+				array( $this, 'add_meta_box_callback' ),
+				$screen,
+				'advanced',
+				'default'
+			);
+		}
+	}
+
+	public function add_meta_box_callback( $post ) {
+		wp_nonce_field( 'second_menu_data', 'second_menu_nonce' );
+		echo 'Max 5 links';
+		$this->generate_fields( $post );
+	}
+
+
+	public function admin_footer() {
+		?><script>
+
+			jQuery(document).ready(function($){
+				if ( typeof wp.media !== 'undefined' ) {
+					var _custom_media = true,
+					_orig_send_attachment = wp.media.editor.send.attachment;
+					$('.rational-metabox-media').click(function(e) {
+						var send_attachment_bkp = wp.media.editor.send.attachment;
+						var button = $(this);
+						var id = button.attr('id').replace('_button', '');
+						_custom_media = true;
+							wp.media.editor.send.attachment = function(props, attachment){
+							if ( _custom_media ) {
+								$("#"+id).val(attachment.url);
+							} else {
+								return _orig_send_attachment.apply( this, [props, attachment] );
+							};
+						}
+						wp.media.editor.open(button);
+						return false;
+					});
+					$('.add_media').on('click', function(){
+						_custom_media = false;
+					});
+				}
+			});
+		</script><?php
+	}
+
+	public function generate_fields( $post ) {
+		$output = '';
+		foreach ( $this->fields as $field ) {
+			$label = '<label for="' . $field['id'] . '">' . $field['label'] . '</label>';
+			$db_value = get_post_meta( $post->ID, 'second_menu_' . $field['id'], true );
+			switch ( $field['type'] ) {
+				case 'media':
+					$input = sprintf(
+						'<input class="regular-text" id="%s" name="%s" type="text" value="%s"> <input class="button rational-metabox-media" id="%s_button" name="%s_button" type="button" value="Upload" />',
+						$field['id'],
+						$field['id'],
+						$db_value,
+						$field['id'],
+						$field['id']
+					);
+					break;
+				default:
+					$input = sprintf(
+						'<input %s id="%s" name="%s" type="%s" value="%s">',
+						$field['type'] !== 'color' ? 'class="regular-text"' : '',
+						$field['id'],
+						$field['id'],
+						$field['type'],
+						$db_value
+					);
+			}
+			$output .= $this->row_format( $label, $input );
+		}
+		echo '<table class="form-table"><tbody>' . $output . '</tbody></table>';
+	}
+
+	public function row_format( $label, $input ) {
+		return sprintf(
+			'<tr><th scope="row">%s</th><td>%s</td></tr>',
+			$label,
+			$input
+		);
+	}
+
+	public function save_post( $post_id ) {
+		if ( ! isset( $_POST['second_menu_nonce'] ) )
+			return $post_id;
+
+		$nonce = $_POST['second_menu_nonce'];
+		if ( !wp_verify_nonce( $nonce, 'second_menu_data' ) )
+			return $post_id;
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+			return $post_id;
+
+		foreach ( $this->fields as $field ) {
+			if ( isset( $_POST[ $field['id'] ] ) ) {
+				switch ( $field['type'] ) {
+					case 'email':
+						$_POST[ $field['id'] ] = sanitize_email( $_POST[ $field['id'] ] );
+						break;
+					case 'text':
+						$_POST[ $field['id'] ] = sanitize_text_field( $_POST[ $field['id'] ] );
+						break;
+				}
+				update_post_meta( $post_id, 'second_menu_' . $field['id'], $_POST[ $field['id'] ] );
+			} else if ( $field['type'] === 'checkbox' ) {
+				update_post_meta( $post_id, 'second_menu_' . $field['id'], '0' );
+			}
+		}
+	}
+}
+new Rational_Meta_Box;

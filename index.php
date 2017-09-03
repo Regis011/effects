@@ -20,7 +20,7 @@
 				<p class="subline">Inspiration for Article Intro Effects</p>
 				<p>by <strong><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">Henry James</a></strong> &#8212; Posted in <strong><?php the_category( ' ' ); ?></strong></p>
 			</div>
-			
+
 			<article class="content">
 				<div class="container">
 					<div class="<?php if(sidebar_get_meta( 'sidebar_active_sidebar' )): ?>col-md-8<?php else: ?>col-md-12<?php endif; ?>">
