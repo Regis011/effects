@@ -45,29 +45,43 @@ gulp.task('icons', function() { 
 
 // Jshint outputs any kind of javascript problems you might have
 // Only checks javascript files inside /src directory
-/*
 gulp.task( 'jshint', function() {
   return gulp.src( './js/src/*.js' )
     .pipe( jshint() )
     .pipe( jshint.reporter( stylish ) )
     .pipe( jshint.reporter( 'fail' ) );
 })
-*/
+
 // Minify Custom JavaScript files
 gulp.task('custom-scripts', function() {
   return gulp.src('./js/src/*.js')
+    .pipe( jshint() )
+    .pipe( jshint.reporter( stylish ) )
+    .pipe( jshint.reporter( 'fail' ) )
     .pipe(sourcemaps.init())
     .pipe(uglify())
     .pipe(concat('custom.min.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./js/dist/'));
+    .pipe(gulp.dest('./js/dist/'))
+});
+
+gulp.task('admin-scripts', function() {
+  return gulp.src('./js/src/admin/*.js')
+    .pipe( jshint() )
+    .pipe( jshint.reporter( stylish ) )
+    .pipe( jshint.reporter( 'fail' ) )
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(concat('admin-scripts.min.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./js/dist/'))
 });
 
 
 // Concatenates all files that it finds in the manifest
 // and creates two versions: normal and minified.
 // It's dependent on the jshint task to succeed.
-gulp.task( 'scripts', ['custom-scripts'], function() {
+gulp.task( 'scripts', ['jshint', 'custom-scripts', 'admin-scripts'], function() {
   return gulp.src( './js/manifest.js' )
     .pipe(sourcemaps.init())
     .pipe( include() )
@@ -147,7 +161,7 @@ gulp.task( 'dev', function() {
   livereload.listen();
 
   // don't listen to whole js folder, it'll create an infinite loop
-  gulp.watch( [ './js/**/*.js', '!./js/dist/*.js' ], [ 'scripts' ] )
+  gulp.watch( [ './js/**/*.js', './js/**/admin/*.js', '!./js/dist/*.js' ], [ 'scripts' ] )
 
   gulp.watch( './sass/**/*.scss', ['sass'] );
 
@@ -162,4 +176,4 @@ gulp.task( 'dev', function() {
 } );
 
 
-gulp.task( 'default', ['bower', 'icons', 'scripts','sass','style','images']);
+gulp.task( 'default', ['bower', 'icons','scripts','sass','style','images']);

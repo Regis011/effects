@@ -25,3 +25,7 @@ function ef_enqueue(){
   wp_enqueue_script('ef_script_js');
 
 }
+
+function load_admin_script() {
+    wp_enqueue_script('admin_script', get_template_directory_uri() . '/js/dist/admin-scripts.min.js', array('jquery'), null, true);
+}
