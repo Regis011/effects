@@ -1,6 +1,10 @@
 <?php get_header(); ?>
 
-<?php var_dump(get_theme_mod('effects_theme_options')['titl_header']); ?>
+<?php #print_r($wp_customize); ?>
+<?php #echo get_theme_mod('effects_theme_options')['default'] . ' - vlada'; ?>
+
+<?php echo get_theme_mod('title_setting') . ' - title'; ?>
+<?php echo get_theme_mod('text_setting') . ' - desc'; ?>
 
 <body <?php body_class('demo-1'); ?> >
 	<div id="container" class="container intro-effect-push">
