@@ -5,6 +5,7 @@
 // Includes
 include(get_template_directory() . '/includes/front/enqueue.php');
 include(get_template_directory() . '/includes/front/widgets.php');
+include(get_template_directory() . '/includes/front/extra_functions.php');
 include(get_template_directory() . '/includes/backend/core.php');
 include(get_template_directory() . '/includes/backend/metabox.php');
 include(get_template_directory() . '/includes/backend/customizer.php');
